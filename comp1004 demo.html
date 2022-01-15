@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CSS Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        header {
+            background-color: #666;
+            padding: 30px;
+            text-align: center;
+            font-size: 35px;
+            color: white;
+        }
+
+        article {
+            float: left;
+            padding: 20px;
+            width: 70%;
+            background-color: #f1f1f1;
+            height: 300px;
+        }
+
+        section::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        footer {
+            background-color: #777;
+            padding: 100px;
+            text-align: center;
+            color: white;
+        }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2>Comp 1004</h2>
+    </header>
+
+    <section>
+        
+
+        <article>
+            <h1>eating management system</h1>
+            <p>This system is designed to prompt people when it is a healthy time to eat to help people with either busy schedules or eating disorders</p>
+            <p>the light is initially green and slowly fade overtime to red when it is advised for you to eat and when you press the button below to tell it that you have eaten it will go back to green</p>
+            <button id="btn_Reset" onClick="btnReset()">Reset</button>
+            <button id="btn_PrtReset" onclick="prtReset()">Partial Reset</button>
+        </article>
+    </section>
+
+    <footer>
+    </footer>
+
+</body>
+</html>
+<script>
+    var timer;
+    var R = 0,
+        G = 255,
+        B = 0;
+    var speed = 70;
+
+    function init() {
+        document.body.style.background = "rgb(" + [R, G, B].join(",") + ")";
+        timer = setInterval(changeColor, speed);
+    }
+
+    function changeColor() {
+        if (R >= 255) {
+            clearInterval(timer);
+        } else {
+            G -= 1;
+            R += 1;
+            document.body.style.background = "rgb(" + [R, G, B].join(",") + ")";
+        }
+    }
+
+    function btnReset() {
+        clearInterval(timer);
+        R = 0;
+        G = 255;
+        init();
+    }
+
+    function prtReset() {
+        clearInterval(timer);
+        R = 127;
+        G = 127;
+        init();
+    }
+</script>
